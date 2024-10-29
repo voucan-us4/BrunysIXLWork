@@ -43,6 +43,19 @@
         <i class="fa-solid fa-comment" id="whysofeinious-button"></i>
     </div>
 
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const url = urlParams.get('url');
+
+        if (url) {
+            const iframe = document.getElementById('myIframe');
+            iframe.src = url;
+            history.replaceState(null, '', window.location.pathname);
+        } else {
+            console.error("No URL parameter provided");
+        }
+    </script>
+
     <script src="/storage/js/box.js"></script>
     <script src="/storage/js/script.js"></script>
 </body>
