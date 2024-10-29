@@ -14,3 +14,36 @@ const urlParams = new URLSearchParams(window.location.search);
                 console.error("No URL parameter provided and no saved URL found.");
             }
         }
+
+function toggleFullscreen() {
+            const iframe = document.getElementById('myIframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { 
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { 
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { 
+                iframe.msRequestFullscreen();
+            }
+        }
+
+        function refreshIframe() {
+            const iframe = document.getElementById('myIframe');
+            iframe.src = iframe.src; 
+        }
+
+document.getElementById('whysofeinious-button').addEventListener('click', function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/@widgetbot/crate@3';
+            script.async = true;
+            script.defer = true;
+            document.body.appendChild(script);
+
+            script.onload = function() {
+                new Crate({
+                    server: '1272664240175448208', 
+                    channel: '1272664509156298773' 
+                });
+            };
+        });
