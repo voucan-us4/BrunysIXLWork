@@ -237,3 +237,22 @@ iframe {
     cursor: pointer;
     font-size: 18px;
 }
+.images-container-partner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.image-link {
+    cursor: pointer;
+    transition: transform 0.3s;
+    display: inline-block;
+    margin: 15px;
+}
+
+.image-link img {
+    width: 500px;
+    height: 200px;
+    border-radius: 30px;
+}
