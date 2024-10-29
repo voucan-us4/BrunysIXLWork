@@ -33,7 +33,7 @@
         </div>
     </div>
 
-<div style="margin-top: 70px;" class="container-iframe">
+<div style="margin-top: 85px;" class="container-iframe">
         <div class="iframe-container">
             <iframe sandbox="allow-scripts allow-pointer-lock allow-forms allow-same-origin allow-downloads" id="myIframe" src=""></iframe>
         </div>
@@ -43,20 +43,7 @@
         <i class="fa-solid fa-comment" id="whysofeinious-button"></i>
     </div>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const url = urlParams.get('url');
-
-        if (url) {
-            const iframe = document.getElementById('myIframe');
-            iframe.src = url;
-            history.replaceState(null, '', window.location.pathname);
-        } else {
-            console.error("No URL parameter provided");
-        }
-    </script>
-
-    <script src="/storage/js/box.js"></script>
+    <script src="/storage/js/iframe.js"></script>
     <script src="/storage/js/script.js"></script>
 </body>
 </html>
