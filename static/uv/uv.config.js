@@ -1,6 +1,6 @@
 self.__uv$config = {
     prefix: '/static/ixl/',
-    bare:'https://funmathsite-tele.onrender.com/bare/',
+    bare:'https://bare-sigma.yourmom.eu.org/bear/',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
     handler: '/static/uv/uv.handler.js',
