@@ -1,5 +1,5 @@
 self.__uv$config = {
-    prefix: '/static/ixl/',
+    prefix: '/static/tiw/',
     bare:'https://skibidi.cfd/bare/',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
