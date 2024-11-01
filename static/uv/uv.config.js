@@ -1,6 +1,6 @@
 self.__uv$config = {
-    prefix: '/static/tiw/',
-    bare:'https://skibidi.cfd/bare/',
+    prefix: '/static/biw/',
+    bare:'https://bare.ubg.icu/bare/',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
     handler: '/static/uv/uv.handler.js',
