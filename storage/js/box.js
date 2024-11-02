@@ -1,37 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
     const items = document.querySelectorAll('.image-item');
-    let lastClickedItem = localStorage.getItem('lastClickedItem'); 
+    let lastClickedItems = JSON.parse(localStorage.getItem('lastClickedItems')) || [];
 
-    
-    if (lastClickedItem) {
-        const itemToMove = document.querySelector(`.image-item[data-label="${lastClickedItem}"]`);
-        if (itemToMove) {
-            const container = document.getElementById('imageContainer');
-            container.prepend(itemToMove);
-        }
+    if (lastClickedItems.length > 0) {
+        const container = document.getElementById('imageContainer');
+        
+        
+        lastClickedItems.slice().reverse().forEach(label => {
+            const itemToMove = document.querySelector(`.image-item[data-label="${label}"]`);
+            if (itemToMove) {
+                container.prepend(itemToMove);
+            }
+        });
     }
 
- 
     document.querySelectorAll('.image-item a').forEach(link => {
         link.addEventListener('click', function(event) {
-            event.preventDefault(); 
-            const item = this.parentElement; 
-            const label = item.getAttribute('data-label'); 
-
-
-            localStorage.setItem('lastClickedItem', label);
+            event.preventDefault();
+            const item = this.parentElement;
+            const label = item.getAttribute('data-label');
 
             
+            lastClickedItems = lastClickedItems.filter(existingLabel => existingLabel !== label);
+            lastClickedItems.unshift(label);
+            
+            
+            if (lastClickedItems.length > 5) {
+                lastClickedItems.pop();
+            }
+
+            localStorage.setItem('lastClickedItems', JSON.stringify(lastClickedItems));
+
             const container = document.getElementById('imageContainer');
             container.prepend(item);
 
-            
             const href = this.getAttribute('href');
-            window.location.href = href; 
+            window.location.href = href;
         });
     });
 });
-
 
 function filterItems() {
     const searchInput = document.getElementById('search').value.toLowerCase();
@@ -40,7 +47,7 @@ function filterItems() {
     items.forEach(item => {
         const label = item.getAttribute('data-label').toLowerCase();
         if (label.includes(searchInput)) {
-            item.style.display = ''; 
+            item.style.display = '';
         } else {
             item.style.display = 'none';
         }
