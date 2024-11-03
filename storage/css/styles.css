@@ -211,7 +211,7 @@ body {
 .iframe-container {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    width: 65vw;
+    width: 70vw;
     height: 70vh;
     overflow: hidden;
 }
@@ -227,7 +227,7 @@ iframe {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 65vw;
+    width: 70vw;
     height: 5vh;
     background-color: #141414;
     border-bottom-left-radius: 15px;
