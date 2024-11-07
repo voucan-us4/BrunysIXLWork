@@ -259,3 +259,12 @@ iframe {
     height: 200px;
     border-radius: 8px;
 }
+
+.box {
+    background-color: #141414;
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: 20vw;
+}
