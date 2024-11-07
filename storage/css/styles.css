@@ -268,3 +268,10 @@ iframe {
     margin: 10px;
     width: 20vw;
 }
+
+.container-settings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+}
