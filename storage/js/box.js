@@ -14,27 +14,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.querySelectorAll('.image-item a').forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
+        link.addEventListener('click', function() {
             const item = this.parentElement;
             const label = item.getAttribute('data-label');
             const href = this.getAttribute('href');
 
-
+          
             window.location.href = href;
 
+        
+            setTimeout(() => {
+                lastClickedItems = lastClickedItems.filter(existingLabel => existingLabel !== label);
+                lastClickedItems.unshift(label);
 
-            lastClickedItems = lastClickedItems.filter(existingLabel => existingLabel !== label);
-            lastClickedItems.unshift(label);
-            
-            if (lastClickedItems.length > 5) {
-                lastClickedItems.pop();
-            }
+                if (lastClickedItems.length > 5) {
+                    lastClickedItems.pop();
+                }
 
-            localStorage.setItem('lastClickedItems', JSON.stringify(lastClickedItems));
+                localStorage.setItem('lastClickedItems', JSON.stringify(lastClickedItems));
 
-            const container = document.getElementById('imageContainer');
-            container.prepend(item);
+                const container = document.getElementById('imageContainer');
+                container.prepend(item);
+            }, 0);
         });
     });
 });
