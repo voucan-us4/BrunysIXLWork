@@ -2,13 +2,14 @@ const chatContainer = document.getElementById('chat-container');
 const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
 
-const apiKey = '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';  
+const apiKey = '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';
 let messageHistory = [
     { role: "system", content: "You are a helpful AI assistant." }
 ];
 
 let sessionMemory = {
-    userName: '',
+    userName: '', 
+    favoriteColor: '', 
     lastResult: null,
     facts: {},
     userQuestions: []
@@ -71,6 +72,8 @@ async function sendMessage() {
             const facts = Object.keys(sessionMemory.facts);
             responseMessage = facts.length > 0 ? `I remember these things: ${facts.join(', ')}.` : "I don't remember anything yet.";
         } else {
+            let context = `User's name is ${sessionMemory.userName}, and their favorite color is ${sessionMemory.favoriteColor}.`;
+
             const response = await fetch('https://api.openai.com/v1/chat/completions', {
                 method: 'POST',
                 headers: {
@@ -80,8 +83,9 @@ async function sendMessage() {
                 body: JSON.stringify({
                     model: "gpt-3.5-turbo",
                     messages: [
-                        { role: "system", content: "You are a helpful AI assistant." },
-                        ...messageHistory
+                        { role: "system", content: "You are a helpful assistant." },
+                        ...messageHistory,
+                        { role: "user", content: context + " " + userMessage }
                     ],
                     temperature: 0.9,
                     max_tokens: 1024,
@@ -96,7 +100,6 @@ async function sendMessage() {
         }
 
         removeTypingIndicator();
-
         addMessage("AI", responseMessage);
         messageHistory.push({ role: "assistant", content: responseMessage });
     } catch (error) {
