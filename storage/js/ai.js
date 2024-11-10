@@ -2,7 +2,7 @@ const chatContainer = document.getElementById('chat-container');
 const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
 
-const apiKey = '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';
+const apiKey = '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';
 let messageHistory = [
     { role: "system", content: "You are a helpful AI assistant." }
 ];
