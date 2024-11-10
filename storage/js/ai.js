@@ -7,6 +7,13 @@ let messageHistory = [
     { role: "system", content: "You are a helpful AI assistant." }
 ];
 
+let sessionMemory = {
+    userName: '',
+    lastResult: null,
+    facts: {},
+    userQuestions: []
+};
+
 function addMessage(role, message) {
     chatContainer.innerHTML += `<p><strong>${role}:</strong> ${message}</p>`;
     chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -24,6 +31,10 @@ function removeTypingIndicator() {
     if (typingIndicator) typingIndicator.remove();
 }
 
+function updateSessionMemory(key, value) {
+    sessionMemory[key] = value;
+}
+
 async function sendMessage() {
     const userMessage = userInput.value.trim();
     if (userMessage === '') return;
@@ -35,32 +46,59 @@ async function sendMessage() {
     showTypingIndicator();
 
     try {
-        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${apiKey}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                model: "mixtral-8x7b-32768",
-                messages: messageHistory,
-                temperature: 0.9,
-                max_tokens: 1024,
-                stream: false
-            })
-        });
+        let responseMessage = '';
+
+        if (/^\d+\s*[\+\-\*\/]\s*\d+$/.test(userMessage)) {
+            const result = eval(userMessage);
+            responseMessage = `The result of ${userMessage} is ${result}.`;
+            updateSessionMemory('lastResult', result);
+        } else if (userMessage.toLowerCase().includes('add')) {
+            const lastResult = sessionMemory.lastResult || 0;
+            const addValue = parseFloat(userMessage.match(/\d+/)[0]);
+            const newResult = lastResult + addValue;
+            responseMessage = `Adding ${addValue} to ${lastResult} gives ${newResult}.`;
+            updateSessionMemory('lastResult', newResult);
+        } else if (userMessage.toLowerCase().includes('my name is')) {
+            const name = userMessage.split('is')[1].trim();
+            sessionMemory.userName = name;
+            responseMessage = `Nice to meet you, ${name}!`;
+            updateSessionMemory('userName', name);
+        } else if (userMessage.toLowerCase().includes('remember that')) {
+            const fact = userMessage.split('remember that')[1].trim();
+            sessionMemory.facts[fact] = true;
+            responseMessage = `Got it! I'll remember that: "${fact}".`;
+        } else if (userMessage.toLowerCase().includes('what do you remember')) {
+            const facts = Object.keys(sessionMemory.facts);
+            responseMessage = facts.length > 0 ? `I remember these things: ${facts.join(', ')}.` : "I don't remember anything yet.";
+        } else {
+            const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: "mixtral-8x7b-32768",
+                    messages: [
+                        { role: "system", content: `You are a helpful AI assistant.` },
+                        ...messageHistory
+                    ],
+                    temperature: 0.9,
+                    max_tokens: 1024,
+                    stream: false
+                })
+            });
+
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+            const data = await response.json();
+            responseMessage = data.choices[0].message.content;
+        }
 
         removeTypingIndicator();
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        const aiResponse = data.choices[0].message.content;
-
-        addMessage("AI", aiResponse);
-        messageHistory.push({ role: "assistant", content: aiResponse });
+        addMessage("AI", responseMessage);
+        messageHistory.push({ role: "assistant", content: responseMessage });
     } catch (error) {
         removeTypingIndicator();
         addMessage("Error", `Failed to get AI response. Error details: ${error.message}`);
@@ -74,12 +112,3 @@ userInput.addEventListener('keypress', (e) => {
         sendMessage();
     }
 });
-
-function clearChat() {
-    chatContainer.innerHTML = '';
-    messageHistory = [
-        { role: "system", content: "You are a helpful AI assistant." }
-    ];
-}
-
-console.log('Script loaded successfully');
