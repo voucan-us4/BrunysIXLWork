@@ -6,6 +6,11 @@
     border-radius: 15px;
     width: 60vw;
     color: #fff;
+    transition: 0.3s;
+}
+
+#send-button:hover {
+    background-color: #555;
 }
 
 #chat-container {
