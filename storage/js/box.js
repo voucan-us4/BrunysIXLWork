@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lastClickedItems.length > 0) {
         const container = document.getElementById('imageContainer');
         
-        
         lastClickedItems.slice().reverse().forEach(label => {
             const itemToMove = document.querySelector(`.image-item[data-label="${label}"]`);
             if (itemToMove) {
@@ -19,11 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             const item = this.parentElement;
             const label = item.getAttribute('data-label');
+            const href = this.getAttribute('href');
 
-            
+
+            window.location.href = href;
+
+
             lastClickedItems = lastClickedItems.filter(existingLabel => existingLabel !== label);
             lastClickedItems.unshift(label);
-            
             
             if (lastClickedItems.length > 5) {
                 lastClickedItems.pop();
@@ -33,9 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const container = document.getElementById('imageContainer');
             container.prepend(item);
-
-            const href = this.getAttribute('href');
-            window.location.href = href;
         });
     });
 });
