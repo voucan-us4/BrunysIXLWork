@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastClickedItems = JSON.parse(localStorage.getItem('lastClickedItems')) || [];
 
     if (lastClickedItems.length) {
-        lastClickedItems.slice().reverse().forEach(label => {
-            const itemToMove = document.querySelector(`.image-item[data-label="${label}"]`);
-            itemToMove && container.prepend(itemToMove);
-        });
+        const lastClickedLabel = lastClickedItems[0];
+        const lastClickedItem = document.querySelector(`.image-item[data-label="${lastClickedLabel}"]`);
+        if (lastClickedItem) {
+            container.prepend(lastClickedItem);
+        }
     }
 
     document.querySelectorAll('.image-item a').forEach(link => {
@@ -15,14 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function handleItemClick(event) {
+        event.preventDefault();
         const item = event.target.closest('.image-item');
         const label = item.dataset.label;
         const href = event.target.href;
-
-        window.location.href = href;
-
         updateLastClickedItems(label);
-        moveItemToTop(item);
+        window.location.href = href;
     }
 
     function updateLastClickedItems(label) {
@@ -34,10 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         localStorage.setItem('lastClickedItems', JSON.stringify(lastClickedItems));
-    }
-
-    function moveItemToTop(item) {
-        container.prepend(item);
     }
 });
 
