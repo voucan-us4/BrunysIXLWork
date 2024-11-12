@@ -18,9 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const item = event.target.closest('.image-item');
         const label = item.dataset.label;
-        const href = event.target.href;
-        updateLastClickedItems(label);
-        window.location.href = href;
+        const href = item.querySelector('a').getAttribute('href');
+
+        if (href) {
+            updateLastClickedItems(label);
+            window.location.href = href;
+        }
     }
 
     function updateLastClickedItems(label) {
