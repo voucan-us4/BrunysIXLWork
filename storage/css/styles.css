@@ -212,7 +212,7 @@ body {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     width: 70vw;
-    height: 70vh;
+    height: 75vh;
     overflow: hidden;
 }
 
@@ -228,7 +228,7 @@ iframe {
     align-items: center;
     justify-content: flex-start;
     width: 70vw;
-    height: 5vh;
+    height: 4vh;
     background-color: #141414;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
