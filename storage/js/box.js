@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('imageContainer');
     let lastClickedItems = JSON.parse(localStorage.getItem('lastClickedItems')) || [];
 
-    if (lastClickedItems.length > 0) {
-        lastClickedItems.slice(0, 10).forEach(label => {
+    if (lastClickedItems.length) {
+        lastClickedItems.slice(10, 0).forEach(label => {
             const itemToMove = document.querySelector(`.image-item[data-label="${label}"]`);
             if (itemToMove) {
                 container.prepend(itemToMove);
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (href) {
             updateLastClickedItems(label);
-            moveItemToTop(item);
             window.location.href = href;
         }
     }
@@ -37,10 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         localStorage.setItem('lastClickedItems', JSON.stringify(lastClickedItems));
-    }
-
-    function moveItemToTop(item) {
-        container.prepend(item);
     }
 });
 
