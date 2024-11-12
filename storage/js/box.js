@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('imageContainer');
     let lastClickedItems = JSON.parse(localStorage.getItem('lastClickedItems')) || [];
 
-    if (lastClickedItems.length) {
+    if (lastClickedItems.length > 0) {
         lastClickedItems.slice(0, 10).forEach(label => {
             const itemToMove = document.querySelector(`.image-item[data-label="${label}"]`);
             if (itemToMove) {
