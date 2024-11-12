@@ -2,7 +2,7 @@ const chatContainer = document.getElementById('chat-container');
 const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
 
-const apiKey = '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';
+const apiKey = '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';
 let messageHistory = [
     { role: "system", content: "You are a helpful AI assistant." }
 ];
@@ -72,20 +72,17 @@ async function sendMessage() {
             const facts = Object.keys(sessionMemory.facts);
             responseMessage = facts.length > 0 ? `I remember these things: ${facts.join(', ')}.` : "I don't remember anything yet.";
         } else {
-            let context = `User's name is ${sessionMemory.userName}, and their favorite color is ${sessionMemory.favoriteColor}.`;
-
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${apiKey}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    model: "gpt-3.5-turbo",
+                    model: "mixtral-8x7b-32768",
                     messages: [
-                        { role: "system", content: "You are a helpful assistant." },
-                        ...messageHistory,
-                        { role: "user", content: context + " " + userMessage }
+                        { role: "system", content: "You are a helpful AI assistant." },
+                        ...messageHistory
                     ],
                     temperature: 0.9,
                     max_tokens: 1024,
