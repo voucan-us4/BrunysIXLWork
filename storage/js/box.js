@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (href) {
             updateLastClickedItems(label);
+            moveItemToTop(item);
             window.location.href = href;
         }
     }
@@ -36,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         localStorage.setItem('lastClickedItems', JSON.stringify(lastClickedItems));
+    }
+
+    function moveItemToTop(item) {
+        container.prepend(item);
     }
 });
 
