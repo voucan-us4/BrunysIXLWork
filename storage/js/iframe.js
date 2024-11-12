@@ -47,3 +47,9 @@ document.getElementById('whysofeinious-button').addEventListener('click', functi
                 });
             };
         });
+
+document.getElementById('openIframeSource').addEventListener('click', function() {
+    var iframeSrc = document.getElementById('myIframe').src;
+    window.open(iframeSrc, '_blank');
+});
+
