@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('imageContainer');
-    const items = document.querySelectorAll('.image-item');
     let lastClickedItems = JSON.parse(localStorage.getItem('lastClickedItems')) || [];
 
     if (lastClickedItems.length) {
