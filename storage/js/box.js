@@ -3,11 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastClickedItems = JSON.parse(localStorage.getItem('lastClickedItems')) || [];
 
     if (lastClickedItems.length) {
-        const lastClickedLabel = lastClickedItems[0];
-        const lastClickedItem = document.querySelector(`.image-item[data-label="${lastClickedLabel}"]`);
-        if (lastClickedItem) {
-            container.prepend(lastClickedItem);
-        }
+        lastClickedItems.slice(0, 10).forEach(label => {
+            const itemToMove = document.querySelector(`.image-item[data-label="${label}"]`);
+            if (itemToMove) {
+                container.prepend(itemToMove);
+            }
+        });
     }
 
     document.querySelectorAll('.image-item a').forEach(link => {
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lastClickedItems = lastClickedItems.filter(existingLabel => existingLabel !== label);
         lastClickedItems.unshift(label);
 
-        if (lastClickedItems.length > 5) {
+        if (lastClickedItems.length > 10) {
             lastClickedItems.pop();
         }
 
