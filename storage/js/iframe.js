@@ -50,6 +50,10 @@ document.getElementById('whysofeinious-button').addEventListener('click', functi
 
 document.getElementById('openIframeSource').addEventListener('click', function() {
     var iframeSrc = document.getElementById('myIframe').src;
-    window.open(iframeSrc, '_blank');
+    var link = document.createElement('a');
+    link.href = iframeSrc;
+    link.target = '_blank';
+    link.click();
 });
+
 
