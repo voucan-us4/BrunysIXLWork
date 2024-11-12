@@ -241,7 +241,12 @@ iframe {
     font-size: 18px;
 }
 
-.icon:hover {
+i {
+    color: #fff;
+    transition: 0.3s;
+}
+
+i:hover {
     color: #ccc;
 }
 
