@@ -159,6 +159,8 @@ body {
     flex-wrap: wrap;
     justify-content: center; 
     gap: 30px; 
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .image-item {
@@ -250,12 +252,10 @@ i:hover {
     color: #ccc;
 }
 
-.images-container-partner {
+.ads-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-left: 50px;
-    margin-right: 50px;
 }
 .image-link {
     cursor: pointer;
