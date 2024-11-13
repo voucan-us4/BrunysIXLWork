@@ -1,7 +1,7 @@
 # BrunysIXLWork
 A unblocked gaming site for  you to use anywhere at anyntime anywhere.
 
-## BrunysIXLWork Size
+## BrunysIXLWork Repo Stats
 <img src="https://img.shields.io/github/repo-size/brunyssite/BrunysIXLWork?style=for-the-badge&labelColor=%23000000&color=%231c1c1c">
 <img src="https://img.shields.io/github/stars/brunyssite/BrunysIXLWork?style=for-the-badge&labelColor=%23000000&color=%231c1c1c">
 <img src="https://img.shields.io/github/forks/brunyssite/BrunysIXLWork?style=for-the-badge&labelColor=000000&color=1c1c1c">
