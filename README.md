@@ -9,6 +9,12 @@ We are mainly a service that provides games completely self hosted but we also h
 
 Youre mainly supposed to use our site at places that have restrictions.
 
+## BrunysIXLWork Sourced
+- Seraph
+- Selenite
+- 3kh0
+(NOT ALL GAMES GRABBED FROM THESE SOURCES.)
+
 ## BrunysIXLWork Devs
 - Brunys (OWNER) (HEAD DEV)
 - Discord Members (SUPPORT) (MAIN PEOPLE THAT PUT THINGS INTO ACTION)
