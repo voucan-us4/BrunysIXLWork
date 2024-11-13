@@ -15,6 +15,7 @@ Youre mainly supposed to use our site at places that have restrictions.
 - Seraph
 - Selenite
 - 3kh0
+- Szvy Central
 - Yandex Games
 
 (NOT ALL SOURCED GRABBED FROM THESE SOURCES.)
