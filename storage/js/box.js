@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.container');
+
     function filterItems() {
         const searchInput = document.getElementById('search').value.toLowerCase();
         document.querySelectorAll('.image-item').forEach(item => {
@@ -8,9 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function moveToTop(event) {
-        const container = document.querySelector('.container');
         const clickedImage = event.currentTarget;
-        container.prepend(clickedImage);
+        const label = clickedImage.dataset.label;
+
+        let recentClicks = JSON.parse(localStorage.getItem('recentClicks')) || [];
+        recentClicks = recentClicks.filter(item => item !== label);
+        recentClicks.unshift(label);
+        if (recentClicks.length > 10) recentClicks.pop();
+
+        localStorage.setItem('recentClicks', JSON.stringify(recentClicks));
+        loadOrder();
+    }
+
+    function loadOrder() {
+        const recentClicks = JSON.parse(localStorage.getItem('recentClicks')) || [];
+        recentClicks.reverse().forEach(label => {
+            const item = document.querySelector(`.image-item[data-label="${label}"]`);
+            if (item) container.prepend(item);
+        });
     }
 
     document.getElementById('search').addEventListener('input', filterItems);
@@ -18,4 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.image-item').forEach(item => {
         item.addEventListener('click', moveToTop);
     });
+
+    loadOrder();
 });
