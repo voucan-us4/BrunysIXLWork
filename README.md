@@ -1,6 +1,9 @@
 # BrunysIXLWork
 A unblocked gaming site for  you to use anywhere at anyntime anywhere.
 
+## BrunysIXLWork Size
+<img src="https://img.shields.io/github/repo-size/brunyssite/BrunysIXLWork?style=for-the-badge&labelColor=%23000000&color=%231c1c1c">
+
 ## BrunysIXLWork Purpose?
 We are mainly a service that provides games completely self hosted but we also have a proxy!
 
