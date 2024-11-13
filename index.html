@@ -43,7 +43,20 @@
     </div>
 
     <h1 style="margin-top: 100px">Welcome To B.I.W...</h1>
-    <p>Start playing on the website by clicking on one of the buttons below!</p>
+
+    <p class="time-display">Your current time for your location is: <span id="time"></span></p>
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString();
+      document.getElementById('time').textContent = timeString;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime(); 
+  </script>
+        
     <a href="/games.html"><button class="sigma">GAMES</button></a>
     <a href="/apps.html"><button class="sigma">APPS</button></a>
     <a href="/proxy.html"><button class="sigma">PROXY</button></a>
