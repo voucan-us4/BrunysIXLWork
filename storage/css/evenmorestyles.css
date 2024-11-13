@@ -39,3 +39,14 @@ body {
 #search-button:hover {
     background-color: #555;
 }
+
+.content-wrapper {
+    padding-top: 50px;
+}
+
+iframe {
+    width: 100vw;
+    height: calc(100vh - 7vh);
+    border: none;
+    display: block;
+}
