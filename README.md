@@ -15,6 +15,8 @@ Youre mainly supposed to use our site at places that have restrictions.
 - Seraph
 - Selenite
 - 3kh0
+- Szvy Central
+
 (NOT ALL GAMES GRABBED FROM THESE SOURCES.)
 
 ## BrunysIXLWork Devs
