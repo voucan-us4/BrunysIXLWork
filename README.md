@@ -10,6 +10,11 @@ Youre mainly supposed to use our site at places that have restrictions.
 - Brunys (OWNER) (HEAD DEV)
 - Discord Members (SUPPORT) (MAIN PEOPLE THAT PUT THINGS INTO ACTION)
 
+## BrunysIXLWork Links
+You can get more links by joining our discord server and by doing that youre also supporting us :)
+
+https://discord.gg/3zyaAkuBRM 
+
 ## Summary
 BrunysIXLWork is a unblocked games and proxy service meant for you to use at school or work but you can use it at home to. BrunysIXLWork provides many games which are all self hosted meaning all content is stored in the website.
 
